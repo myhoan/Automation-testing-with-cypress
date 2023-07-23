@@ -24,7 +24,10 @@
       "userName": "hoandinh123",
       "password": "12345Aa!@"
     },
-    "books": ["Speaking JavaScript","Git Pocket Guide"]
+    "searchBook": [
+      "Learning JavaScript Design Patterns",
+      "Designing Evolvable Web APIs with ASP.NET"
+    ],
+    "books": ["Speaking JavaScript", "Git Pocket Guide"]
   }
-  
 }

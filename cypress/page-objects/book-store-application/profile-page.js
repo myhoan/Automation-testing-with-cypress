@@ -1,7 +1,7 @@
-import { LoginPage } from "./LoginPage";
+import { LoginPage } from "./login-page";
 
 export const ProfilePage = {
-  loginProfilePage(username, password) {
+  loginFromProfilePage(username, password) {
     cy.get("a[href='/login']").click();
     LoginPage.loginToTheApplication(username, password);
   },
@@ -17,7 +17,7 @@ export const ProfilePage = {
     cy.get(".rt-noData").should("have.text", "No rows found");
   },
   deleteAllBook() {
-    cy.contains("Delete All Books").click({force: true});
+    cy.contains("Delete All Books").click({ force: true });
     cy.get(".modal-header")
       .should("be.visible")
       .and("contain", "Delete All Books");
