@@ -53,14 +53,4 @@ describe("Register student form successfully", () => {
     );
   });
 
-  // it('Register student form successfully with mandatory fields', () => {
-  //   cy.visit('https://demoqa.com/automation-practice-form')
-  //   cy.get('#firstName').type('Hoan')
-  //   cy.get('#lastName').type('Dinh')
-  //   cy.xpath('//label[text()="Female"]').click()
-  //   cy.get('#userNumber').type('0903678910')
-  //   cy.get('#submit').click({force:true})
-  //   cy.log('Verify that register with mandatory fields successfully')
-  //   cy.get('#example-modal-sizes-title-lg').should('have.text','Thanks for submitting the form')
-  // })
 });
