@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cypress": "cypress open",
+    "cypress": "npx cypress open",
+    "cy:run": "npx cypress run --env allure=true",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

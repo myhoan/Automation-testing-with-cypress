@@ -1,24 +1,17 @@
+import { BookStorePage } from "../PageObjects/BookStoreApplication/BookStorePage";
+
 describe("Add book to collection", () => {
-  it("Add book to collection succcessully", () => {
-    cy.visit("login");
-    cy.get("#userName").type("hoandinh123");
-    cy.get("#password").type("12345Aa!@");
-    cy.get("#login").click();
-    cy.get("#userName-value").should("have.text", "hoandinh123");
-    cy.xpath('//span[text()="Book Store"]').click();
-    cy.xpath('//a[text()="Speaking JavaScript"]').click();
-    cy.xpath(
-      '//button[@id="addNewRecordButton" and text()="Add To Your Collection"]'
-    ).click({ force: true });
-    cy.on("window:form", (txt) => {
-      expect(txt).to.contains("Book added to your collection.");
-      expect(txt).to.equal("OK");
+  let data;
+  beforeEach(() => {
+    cy.visit("books");
+    cy.fixture("sampleData").then((item) => {
+      return (data = item);
     });
-    cy.xpath('//span[text()="Profile"]').click();
-    cy.log("Verify that add book to collection successfully");
-    cy.xpath('//a[text()="Speaking JavaScript"]').should(
-      "have.text",
-      "Speaking JavaScript"
-    );
+  });
+
+  it("Add book to collection succcessully", function () {
+    const {userName, password} = data.bookApplication.login
+    BookStorePage.loginFromBookStore(userName, password);
+    BookStorePage.addBook(data.bookApplication.books[0]);
   });
 });

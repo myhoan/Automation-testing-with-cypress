@@ -1,19 +1,17 @@
+import { ProfilePage } from "../PageObjects/BookStoreApplication/ProfilePage";
+
 describe("Delete book", () => {
-  it("Delete book successfully", () => {
-    cy.visit("login");
-    cy.get("#userName").type("hoandinh123");
-    cy.get("#password").type("12345Aa!@");
-    cy.get("#login").click();
-    cy.get("#userName-value").should("have.text", "hoandinh123");
-    cy.xpath('//span[text()="Profile"]').click();
-    cy.xpath('//input[@id="searchBox"]').type("Speaking JavaScript");
-    cy.xpath('//span[@id="basic-addon2"]').click();
-    cy.xpath('//span[@id="delete-record-undefined"]').click();
-    cy.xpath('//button[@id="closeSmallModal-ok"]').click();
-    cy.on("window:form", (value) => {
-      expect(value).to.equal("OK");
+  let data;
+  beforeEach(() => {
+    cy.visit("profile");
+    cy.fixture("sampleData").then((item) => {
+      return (data = item);
     });
-    cy.log('Delete book successfully')
-    cy.get(".rt-noData").should("have.text", "No rows found");
+  });
+  it("Delete book successfully", () => {
+    const {userName, password} = data.bookApplication.login
+    ProfilePage.loginProfilePage(userName, password);
+    ProfilePage.deleteBook(data.bookApplication.books[0]);
+    
   });
 });

@@ -5,7 +5,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    baseUrl: 'https://demoqa.com/',
     blockHosts: ["pagead2.googlesyndication.com","ad.plus", "serving.stat-rock.com","securepubads.g.doubleclick.net","www.google-analytics.com"],
-    baseUrl: 'https://demoqa.com/'
   },
 });

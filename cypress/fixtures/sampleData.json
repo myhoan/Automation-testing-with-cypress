@@ -1,0 +1,30 @@
+{
+  "studentForm": {
+    "firstName": "Hoan",
+    "lastName": "Dinh",
+    "email": "Hoandinh@gmail.com",
+    "gender": "Female",
+    "phoneNumber": "0903678910",
+    "dob": "14 May,2000",
+    "subject": "Maths",
+    "hobbies": "Sports",
+    "picture": "cypress/fixtures/avatar.jpg",
+    "currentAddress": "357 St. Hoang Sa, Ho Chi Minh City",
+    "state": "NCR",
+    "city": "Delhi"
+  },
+  "bookApplication": {
+    "register": {
+      "firstName": "Hoan",
+      "lastName": "Dinh",
+      "userName": "hoandinh123",
+      "password": "12345Aa!@"
+    },
+    "login": {
+      "userName": "hoandinh123",
+      "password": "12345Aa!@"
+    },
+    "books": ["Speaking JavaScript","Git Pocket Guide"]
+  }
+  
+}
