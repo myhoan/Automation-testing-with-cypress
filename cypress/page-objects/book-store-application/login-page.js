@@ -1,11 +1,17 @@
-export const LoginPage = {
+let data;
+before(() => {
+  cy.fixture("sampleData.json").then((item) => {
+    return (data = item.variableLocator);
+  });
+});
+export class LoginPage {
   loginToTheApplication(userName, password) {
-    cy.get("#userName").clear().type(userName);
-    cy.get("#password").clear().type(password);
-    cy.get("#login").click();
+    cy.get(data.txtUserName).clear().type(userName);
+    cy.get(data.txtPassword).clear().type(password);
+    cy.get(data.btnLogin).click();
     cy.contains(userName);
-  },
+  }
   verifyAlertMessageForInvalidCredantial() {
-    cy.get("#name").should("have.text", "Invalid username or password!");
-  },
-};
+    cy.get(data.txtName).should("have.text", "Invalid username or password!");
+  }
+}

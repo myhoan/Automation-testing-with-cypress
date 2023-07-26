@@ -11,7 +11,18 @@ describe("Add book to collection", () => {
 
   it("Add book to collection succcessully", function () {
     const { userName, password } = data.bookApplication.login;
-    BookStorePage.loginFromBookStore(userName, password);
-    BookStorePage.addBook(data.bookApplication.books[0]);
+    const bookStorePage = new BookStorePage();
+    bookStorePage.loginFromBookStore(userName, password);
+    bookStorePage.addBook(data.bookApplication.books[0]);
+    cy.on("window:form", (str) => {
+      expect(str).to.equal("Book added to your collection.");
+      expect(txt).to.equal("OK");
+    });
+    cy.on("window:confirm", () => true);
+    cy.visit("profile");
+    cy.xpath('//a[text()="Speaking JavaScript"]').should(
+      "have.text",
+      "Speaking JavaScript"
+    );
   });
 });

@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cypress": "npx cypress open",
-    "cy:run": "npx cypress run --env allure=true",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cy:run": "cypress run --env allure=true"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +13,10 @@
   "dependencies": {
     "cypress": "^12.17.1",
     "cypress-xpath": "^2.0.1"
+  },
+  "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.40.0",
+    "allure-commandline": "^2.23.0",
+    "cypress-mochawesome-reporter": "^3.5.1"
   }
 }

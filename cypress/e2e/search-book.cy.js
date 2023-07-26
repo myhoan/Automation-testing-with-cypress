@@ -9,7 +9,10 @@ describe("Search book with multiple results", () => {
     });
   });
   it("Search book with multiple results successfully", () => {
-    BookStorePage.searchBook("design");
-    BookStorePage.searchBook("Design");
+    const bookStorePage = new BookStorePage();
+    const nameLowercaseSearchBook = "design";
+    const nameUpercaseSearchBook = "Design";
+    bookStorePage.searchBook(nameLowercaseSearchBook);
+    bookStorePage.searchBook(nameUpercaseSearchBook);
   });
 });

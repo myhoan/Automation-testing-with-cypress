@@ -24,7 +24,8 @@ describe("Register student form successfully", () => {
       state,
       city,
     } = data.studentForm;
-    PracticeFormPage.registerStudent(
+    const practiceFormPage = new PracticeFormPage();
+    practiceFormPage.registerStudent(
       firstName,
       lastName,
       email,
@@ -52,5 +53,28 @@ describe("Register student form successfully", () => {
       `${firstName} ${lastName}${email}${gender}${phoneNumber}${dob}${subject}${hobbies}${specificPicture}${currentAddress}${state} ${city}`
     );
   });
-
+  it("Register student form successfully with mandatory fields", () => {
+    const { firstName, lastName, gender, phoneNumber, dob } = data.studentForm;
+    cy.visit("https://demoqa.com/automation-practice-form");
+    const practiceFormPage = new PracticeFormPage();
+    practiceFormPage.registerStudentMadatoryField(
+      firstName,
+      lastName,
+      gender,
+      phoneNumber,
+      dob
+    );
+    cy.xpath(
+      '//table[@class="table table-dark table-striped table-bordered table-hover"]/tbody'
+    ).should(
+      "have.text",
+      `Student Name${firstName} ${lastName}Student EmailGender${gender}Mobile${phoneNumber}Date of Birth${dob}SubjectsHobbiesPictureAddressState and City`
+    );
+    cy.xpath(
+      '//table[@class="table table-dark table-striped table-bordered table-hover"]//td[2]/text()'
+    ).should(
+      "have.text",
+      `${firstName} ${lastName}${gender}${phoneNumber}${dob}`
+    );
+  });
 });

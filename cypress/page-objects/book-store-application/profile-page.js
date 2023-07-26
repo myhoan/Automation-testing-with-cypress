@@ -1,30 +1,32 @@
 import { LoginPage } from "./login-page";
 
-export const ProfilePage = {
+let data;
+before(() => {
+  cy.fixture("sampleData.json").then((item) => {
+    return (data = item.variableLocator);
+  });
+});
+export class ProfilePage {
   loginFromProfilePage(username, password) {
+    const loginPage = new LoginPage();
     cy.get("a[href='/login']").click();
-    LoginPage.loginToTheApplication(username, password);
-  },
+    loginPage.loginToTheApplication(username, password);
+  }
   deleteBook(bookName) {
-    cy.get("#searchBox").type(bookName);
-    cy.get("#basic-addon2").click();
-    cy.get("#delete-record-undefined").click();
-    cy.get("#closeSmallModal-ok").click();
-    cy.on("window:form", (value) => {
-      expect(value).to.equal("OK");
-    });
-    cy.on("window:confirm", () => true);
-    cy.get(".rt-noData").should("have.text", "No rows found");
-  },
+    cy.get(data.searchTextBox).type(bookName);
+    cy.get(data.btnSearch).click();
+    cy.get(data.btnDeleteBook).click();
+    cy.get(data.btnCloseModal).click();
+  }
   deleteAllBook() {
     cy.contains("Delete All Books").click({ force: true });
-    cy.get(".modal-header")
+    cy.get(data.modalHeader)
       .should("be.visible")
       .and("contain", "Delete All Books");
-    cy.get(".modal-body")
+    cy.get(data.modalBody)
       .should("be.visible")
       .and("contain", "Do you want to delete all books?");
-    cy.get("#closeSmallModal-ok").click();
+    cy.get(data.btnCloseModal).click();
     cy.on("window:alert", (str) => {
       if (str === "All Books deleted.") {
         expect(str).to.equal("All Books deleted.");
@@ -33,5 +35,5 @@ export const ProfilePage = {
       }
     });
     cy.on("window:confirm", () => true);
-  },
-};
+  }
+}
