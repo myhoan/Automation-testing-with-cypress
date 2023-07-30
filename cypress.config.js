@@ -15,5 +15,11 @@ module.exports = defineConfig({
       "securepubads.g.doubleclick.net",
       "www.google-analytics.com",
     ],
+    env: {
+      bookStoreUser: {
+        userName: "hoandinh123",
+        password: "12345Aa!@",
+      },
+    },
   },
 });
